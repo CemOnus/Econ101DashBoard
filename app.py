@@ -23,7 +23,7 @@ refresh_ms = 60_000 if (is_weekday and is_market_hours) else 0
 if refresh_ms:
     st.caption("🔄 Auto-refresh is ON (1 min) during market hours.")
     # Streamlit auto-rerun via query param trick to avoid aggressive caching
-    st.experimental_set_query_params(_=int(time.time()))
+    st.query_params.update(_=int(time.time()))
 
 # Secrets / env
 FRED_API_KEY = os.getenv("FRED_API_KEY", st.secrets.get("FRED_API_KEY", ""))
